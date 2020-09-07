@@ -17,8 +17,14 @@ useUnifiedTopology: true});
 const connection = mongoose.connection;
 connection.once('open', ()=>{
     console.log('MongoDB connection established successfully');
-})
+});
+
+const exercisesRouter = require('./routes/exercises');
+const users = require('./routes/users');
+
+app.use('/exercises', exercisesRouter);
+app.use('/users', users);
 
 app.listen(port, ()=>{
     console.log(`Server is running on port ${port}`);
-})
+});
